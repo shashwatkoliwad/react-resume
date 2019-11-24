@@ -17,6 +17,16 @@ import Dialog from "./dialog";
 export default props => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [skills, setSkills ] = useState([])
+
+  const handleSave = async() => {
+    let skills = skills.split(',')
+    let res = await updateHighlights(skills)
+    if(res) {
+      setSkills(res)
+    }
+
+  }
 
   return (
     <>
@@ -47,7 +57,7 @@ export default props => {
           <Grid container>
             <Grid item xs={12} className={classes.marginAround}>
               <Typography>
-               * Please add the top highlights of your profile. For eg. React Ninja, Amazon, Software Architect, etc.(Add highlights by pressing Enter)
+               * Please add the top highlights of your profile. For eg. React Ninja, Amazon, Software Architect, etc.(Seperated by commas)
               </Typography>
               <TextField
                 id="outlined-textarea"
@@ -56,12 +66,15 @@ export default props => {
                 multiline
                 margin="normal"
                 variant="outlined"
-                value = {}
+                value = {skills}
+                onChange = {(e) => setSkills({...skills, skills:event.target.value})}
               />
               <Button 
                 variant="contained" 
                 color="primary" 
-                style={{float:'right'}}>
+                style={{float:'right'}}
+                onClick = {()=> handleSave()}
+                >
                   Save
               </Button>
             </Grid>

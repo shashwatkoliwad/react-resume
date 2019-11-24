@@ -11,3 +11,13 @@ export function loginUser(data) {
       });
   }
 
+  export function updateHighlights(data) {
+    return axios.post(`/user/highlights/update`, data)
+      .then((response) => {
+          console.log(response.data)
+        return response.data
+      })
+      .catch((error) => {
+        return error
+      });
+  }
