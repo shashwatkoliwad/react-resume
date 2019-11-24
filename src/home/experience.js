@@ -21,13 +21,20 @@ import ViewQuilt from "@material-ui/icons/ViewQuilt";
 import Work from "@material-ui/icons/Work";
 import Dialog from "./dialog";
 import ProjectDialog from "./dialog";
-
-import School from "@material-ui/icons/School";
+import { addExperience } from '../api'
 
 export default props => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [addProject, setAddProject] = React.useState(false);
+  const [formData, setFormData] = React.useState()
+
+  const handleSave = async() => {
+    let res = await addExperience(formData)
+    if (res) {
+
+    }
+  }
 
   const steps = [
     {
@@ -171,6 +178,8 @@ export default props => {
                 fullWidth
                 margin="normal"
                 variant="outlined"
+                value = { FormData.title }
+                onChange = { (e) => setFormData({...FormData, title: e.target.value})}
               />
             </Grid>
             <Grid item xs={6} className={classes.textFieldContainer}>
@@ -183,6 +192,8 @@ export default props => {
                 fullWidth
                 margin="normal"
                 variant="outlined"
+                value = { FormData.companyName}
+                onChange = { (e) => setFormData({ ...FormData, companyName:e.target.value})}
               />
             </Grid>
             <Grid item xs={3} className={classes.textFieldContainer}>
@@ -195,6 +206,8 @@ export default props => {
                 fullWidth
                 margin="normal"
                 variant="outlined"
+                value = { FormData.startDate}
+                onChange = { (e) => setFormData({ ...FormData, startDate:e.target.value})}
               />
             </Grid>
             <Grid item xs={3} className={classes.textFieldContainer}>
@@ -207,6 +220,8 @@ export default props => {
                 className={classes.TextFieldTopMargin}
                 margin="normal"
                 variant="outlined"
+                value = { FormData.endDate}
+                onChange = { (e) => setFormData({ ...FormData, endDate:e.target.value})}
               />
             </Grid>
             <Grid item xs={6} className={classes.textFieldContainer}>
@@ -219,6 +234,8 @@ export default props => {
                 fullWidth
                 margin="normal"
                 variant="outlined"
+                value = { FormData.location}
+                onChange = { (e) => setFormData({ ...FormData, location:e.target.value})}
               />
             </Grid>
             <Grid item xs={12} className={classes.textFieldContainer}>
@@ -232,6 +249,8 @@ export default props => {
                 className={classes.TextFieldTopMargin}
                 margin="normal"
                 variant="outlined"
+                value = { FormData.description}
+                onChange = { (e) => setFormData({ ...FormData, description:e.target.value})}
               />
             </Grid>
             <Grid item xs={12} className={classes.textFieldContainer}>
@@ -256,6 +275,7 @@ export default props => {
                 variant="contained"
                 color="primary"
                 style={{ float: "right" }}
+                onClick = { ()=> handleSave()}
               >
                 Save
               </Button>

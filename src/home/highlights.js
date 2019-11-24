@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Grid,
   TextField,
@@ -13,17 +13,20 @@ import useStyles from "./styles";
 import CloseIcon from "@material-ui/icons/Close";
 import EditIcon from "@material-ui/icons/Edit";
 import Dialog from "./dialog";
+import { updateHighlights } from '../api'
 
 export default props => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [skills, setSkills ] = useState([])
+  const [skills, setSkills ] = useState('')
 
   const handleSave = async() => {
-    let skills = skills.split(',')
-    let res = await updateHighlights(skills)
+    const payload = {
+      highlights: skills
+    }
+    let res = await updateHighlights(payload)
     if(res) {
-      setSkills(res)
+      
     }
 
   }
@@ -67,7 +70,7 @@ export default props => {
                 margin="normal"
                 variant="outlined"
                 value = {skills}
-                onChange = {(e) => setSkills({...skills, skills:event.target.value})}
+                onChange = {(e) => setSkills(e.target.value)}
               />
               <Button 
                 variant="contained" 

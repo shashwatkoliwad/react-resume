@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Grid,
   TextField,
@@ -14,18 +14,23 @@ import useStyles from "./styles";
 import EditIcon from "@material-ui/icons/Edit";
 import Accountcirle from "@material-ui/icons/AccountCircle";
 import CloseIcon from "@material-ui/icons/Close";
-
-import Work from "@material-ui/icons/Work";
-import School from "@material-ui/icons/School";
 import Dialog from "./dialog";
-
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+import { profileOverviewUpdate } from '../api'
 
 export default props => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [overView, setOverView] = useState('')
+
+  const handleSave = async() => {
+    const payload = {
+      profileOverview : overView
+    }
+    let res = await profileOverviewUpdate(payload)
+    if (res) {
+
+    }
+  }
   return (
     <>
       <Paper className={classes.paper}>
@@ -74,8 +79,15 @@ export default props => {
                 rows="4"
                 margin="normal"
                 variant="outlined"
+                value = {overView}
+                onChange = { (e) => setOverView(e.target.value)}
               />
-              <Button variant="contained" color="primary" style={{float:'right'}}>
+              <Button 
+                variant="contained" 
+                color="primary" 
+                style={{float:'right'}}
+                onClick = {()=> handleSave()}
+                >
                   Save
               </Button>
             </Grid>

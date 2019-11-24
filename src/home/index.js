@@ -20,7 +20,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import Call from "@material-ui/icons/Call";
 import MyLocation from "@material-ui/icons/MyLocation";
 import Email from "@material-ui/icons/Email";
-import Experiance from "./experiance";
+import Experiance from "./experience";
 import Certification from "./certifications";
 import Events from "./Events";
 import Profileoverview from "./profileoverview";
