@@ -51,10 +51,10 @@ export default props => {
         </Toolbar>
         <hr />
         <Typography className={classes.textJustify}>
-          kjssmlms sljsm sms kms kmo;s smo;ls jsliks kjssmlms sljsm sms kms
-          kmo;s smo;ls jsliks kjssmlms sljsm sms kms kmo;s smo;ls jsliks
-          kjssmlms sljsm sms kms kmo;s smo;ls jsliks kjssmlms sljsm sms kms
-          kmo;s smo;ls jsliks kjssmlms sljsm sms kms kmo;s smo;ls jsliks
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+        sed do eiusmod tempor incididunt ut labore et dolore magna 
+        aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
+        ullamco laboris nisi ut aliquip ex ea commodo consequat. 
         </Typography>
       </Paper>
       <Dialog
