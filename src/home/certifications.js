@@ -9,20 +9,41 @@ import {
   Avatar,
   Paper,
 } from "@material-ui/core";
-
+import 'date-fns';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from '@material-ui/pickers'
 import useStyles from "./styles";
 import EditIcon from "@material-ui/icons/Edit";
 import Accountcirle from "@material-ui/icons/AccountCircle";
 import Dialog from "./dialog";
 import CloseIcon from "@material-ui/icons/Close";
 
-
-import Work from "@material-ui/icons/Work";
-import School from "@material-ui/icons/School";
+import { addCertificate } from '../api'
 
 export default props => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [formData, setFormData] = React.useState({
+    title : '',
+    startDate: '',
+    endDate: '',
+    instituteName: '',
+    location: '',
+    description: ''
+
+  })
+
+  const handleSubmit = async() => {
+    let payload = formData
+    let res = await addCertificate(payload)
+    if (res) {
+      console.log("success")
+    }
+    setOpen(false)
+  }
   return (
     <>
       <Paper className={classes.paper}>
@@ -61,32 +82,28 @@ export default props => {
                   fullWidth
                   margin="normal"
                   variant="outlined"
+                  value = {formData.title}
+                  onChange = { (e) =>  setFormData({...formData, title: e.target.value})}
                 />
               </Grid>
               <Grid item xs={4} className={classes.textFieldContainer}>
                 <Typography>* Start Date</Typography>
                 <TextField
-                  id="outlined-textarea"
-                  placeholder="Placeholder"
-                  className={classes.TextFieldTopMargin}
-  
-                  multiline
-                  fullWidth
-                  margin="normal"
-                  variant="outlined"
+                  id="date"
+                  type="date"
+                  className={classes.textField}
+                  value = { formData.startDate}
+                  onChange = { (e) => setFormData({ ...formData, startDate: e.target.value })}
                 />
               </Grid>
               <Grid item xs={4} className={classes.textFieldContainer}>
                 <Typography>* End Date</Typography>
                 <TextField
-                  id="outlined-textarea"
-                  placeholder="Placeholder"
-                  className={classes.TextFieldTopMargin}
-  
-                  multiline
-                  fullWidth
-                  margin="normal"
-                  variant="outlined"
+                  id="date"
+                  type="date"
+                  className={classes.textField}
+                  value = { formData.endDate}
+                  onChange = { (e) => setFormData({ ...formData, endDate: e.target.value })}
                 />
               </Grid>
               <Grid item xs={6} className={classes.textFieldContainer}>
@@ -97,7 +114,8 @@ export default props => {
                   multiline
                   fullWidth
                   className={classes.TextFieldTopMargin}
-                  
+                  value = {formData.instituteName}
+                  onChange = { (e)=> setFormData({...formData, instituteName: e.target.value})}
                   margin="normal"
                   variant="outlined"
                 />
@@ -109,7 +127,8 @@ export default props => {
                   placeholder="Placeholder"
                   multiline
                   className={classes.TextFieldTopMargin}
-  
+                  value = { formData.location}
+                  onChange = { (e) => setFormData({...formData, location:e.target.value})}
                   fullWidth
                   margin="normal"
                   variant="outlined"
@@ -126,6 +145,8 @@ export default props => {
                   rows="6"
                   margin="normal"
                   variant="outlined"
+                  value = {formData.description}
+                  onChange = {(e) => setFormData({...formData, description: e.target.value })}
                 />
               </Grid>
               <Grid item xs className={classes.textFieldContainer}>
@@ -133,6 +154,7 @@ export default props => {
                   variant="contained"
                   color="primary"
                   style={{ float: "right" }}
+                  onClick = {()=>  handleSubmit()}
                 >
                   Save
                 </Button>

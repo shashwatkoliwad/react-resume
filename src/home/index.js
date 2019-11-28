@@ -8,11 +8,6 @@ import {
   Toolbar,
   Avatar,
   Paper,
-  Step,
-  StepLabel,
-  Stepper,
-  StepContent,
-  StepConnector
 } from "@material-ui/core";
 import Education from "./education";
 import useStyles from "./styles";
@@ -27,6 +22,8 @@ import Profileoverview from "./profileoverview";
 import Heighlights from "./highlights";
 
 export default props => {
+
+  // const []
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -66,25 +63,33 @@ export default props => {
             <Grid container>
               <Grid className={[classes.contentClass,classes.TextFieldTopMargin].join(" ")}>
                 <Email />
-                <Typography variant="span" className={classes.marginLeft}>
-                  sh@gmail.com
-                </Typography>
+                <Typography 
+                  variant="span" 
+                  className={classes.marginLeft}
+                  value = {'lol' }
+                  />
+                  
               </Grid>
             </Grid>
             <Grid container>
               <Grid className={[classes.contentClass,classes.TextFieldTopMargin].join(" ")}>
                 <Call />
-                <Typography variant="span" className={classes.marginLeft}>
-                  545454546546
-                </Typography>
+                <Typography 
+                  variant="span" 
+                  className={classes.marginLeft}
+                  value = {'lol'}
+                />
               </Grid>
             </Grid>
             <Grid container>
               <Grid className={[classes.contentClass,classes.TextFieldTopMargin].join(" ")}>
                 <MyLocation />
-                <Typography variant="span" className={classes.marginLeft}>
-                  Bengalore
-                </Typography>
+                <Typography 
+                  variant="span" 
+                  className={classes.marginLeft}
+                  value = {'lol'} 
+                />
+                  
               </Grid>
             </Grid>
           </Paper>

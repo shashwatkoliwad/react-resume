@@ -24,7 +24,7 @@ function App() {
   return (
     <MuiThemeProvider theme={theme}>
       <Router>
-        <Route exact path="/" component = {SignIn} />
+        <Route exact path='/' component={(props) => <SignIn {...props}/>} />
         <Route path="/home" component = {Home }/>
       </Router>
     </MuiThemeProvider>

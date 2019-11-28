@@ -2,14 +2,17 @@ import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
+import { Link } from 'react-router-dom';
+// import Link from "@material-ui/core/Link";
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Home from '../home'
 
 import { loginUser } from '../api'
+import { getThemeProps } from '@material-ui/styles';
 
 function Copyright() {
   return (
@@ -45,18 +48,20 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SignIn() {
+export default function SignIn(props) {
   const classes = useStyles();
 
   const [formData, setFormData] = useState({
     email: '',
     password : ''
   })
-
+  console.log(props)
   const handleLogin = async() => {
-    let res = await loginUser(formData)
-    if (res) {
-      console.log(res)
+    let token = await loginUser(formData)
+    if (token) {
+      console.log(props)      
+      localStorage.setItem("token", token)
+      props.history.push('/home')
     }
   }
 
@@ -101,8 +106,8 @@ export default function SignIn() {
             className={classes.submit}
             onClick = { () => handleLogin()}
 
-          >
-            Sign In
+          >Sign In
+            
           </Button>
           <Grid container>
             <Grid item xs>
